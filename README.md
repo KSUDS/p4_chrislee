@@ -18,10 +18,48 @@ Colorado gave you home sales data for the [city of Denver from 2013](https://www
 
 Complete this project in R and Python as two standalone reports.
 
-- [ ] Create 2-3 charts that evaluate potential relationships between the home variables and before1980.
-- [ ] Can you build a classification model (before or after 1980) that has at least 90% accuracy for the state of Colorado to use (explain your model choice and which models you tried)?
-- [ ] Will you justify your classification model by detailing the essential features in your model (a chart and a description are a must)?
-- [ ] Can you describe the quality of your classification model using 2-3 evaluation metrics? You need to provide an interpretation of each evaluation metric when you provide the value.
+- [X] Create 2-3 charts that evaluate potential relationships between the home variables and before1980.
+- [X] Can you build a classification model (before or after 1980) that has at least 90% accuracy for the state of Colorado to use (explain your model choice and which models you tried)?
+- [X] Will you justify your classification model by detailing the essential features in your model (a chart and a description are a must)?
+- [X] Can you describe the quality of your classification model using 2-3 evaluation metrics? You need to provide an interpretation of each evaluation metric when you provide the value.
+
+### Preliminary Charts
+
+!["Preliminary1"](boxplot1.png)
+
+!["Preliminary2"](boxplot2.png)
+
+!["Preliminary3"](boxplot3.png)
+
+Similar to the coding challenge and in class, boxplots seem to be the best way to go.
+
+### Classification Model
+
+Again, similar to class, nothing seems to beat out the Boosted Trees model.  I tried for quite some time to change the number of features and the train/test ratio, but could not reach above 88.9% accuracy.  Below is the comparison of the Boosted Trees, Logistic, and Naive Bayes model.
+
+!["Accuracy"](https://user-images.githubusercontent.com/79594138/145855456-a04aa2d0-0d68-4881-a44f-7066b4f62baf.png)
+
+### Model Justification
+
+For whatever reason, Boosted Trees can pick _slightly_ better features and model the housing data a bit better.  Below are two charts of feature importance for our model.
+
+!["Features1"](BTImportance.png)
+
+!["Features2"](BTImportance2.png)
+
+The second plot is must more effective, with box plots that display the variance of each feature.  If the house is one story, that is the largest indicator of year built.  This makes sense, as common sense dictates that older houses have a higher chance of being one story.  Similarly, with all of the anecdotes grandparents tell of being one of eight children with only one bathroom, number of baths has the second most significance.  Thank goodness we've increased the number of baths, so there are less households that have to take a ticket every time they need to use the restroom!
+
+### Quality of Classification
+
+Using the same accuracy table above, our model performed at 88.9% accuracy on the test data.  This means that when a house with the required variables is given to the model, there is an 88.9% chance of successfully classifying it as before or after 1980.
+
+!["ROC"](ROCCurveBT.png)
+
+Looking at the ROC curve, our model has strong prediction results.  The more evenly-spread area under our curve, the better classification our model provides.
+
+!["Probability"](https://user-images.githubusercontent.com/79594138/145858248-0d226fb2-a84c-4053-8ad2-c311c1384c99.png)
+
+Randomly selecting two houses, we can see above that our model successfully identifies the houses as Before then After 1980.  One can see that number of baths was the feature that most affected the house after 1980, and that ArcStyle_OneStory most affected the houes before 1980.
 
 ## Data dictionary
 
